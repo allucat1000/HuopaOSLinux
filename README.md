@@ -1,7 +1,7 @@
 ## Install instructions
 1. Install Debian Linux without a desktop environment.
 
-2. Login as **root** and run "apt update" and "apt install sudo"
+2. Login as **root** and run "apt update" and "apt install curl"
 
 3. Run "login user" **(replace user with your user)**
 
