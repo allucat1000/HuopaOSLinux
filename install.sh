@@ -11,7 +11,7 @@ sudo apt install -y \
   xserver-xorg \
   x11-xserver-utils \
   xinit \
-  chromium-browser \
+  chromium \
   lightdm \
   policykit-1 \
   fonts-dejavu \
@@ -36,7 +36,7 @@ xset s off        # disable screen saver
 xset -dpms        # disable power management
 xset s noblank    # don't blank the video device
 unclutter &       # hide mouse cursor after idle
-chromium-browser --kiosk --force-device-scale-factor=0.75 "$WEBOS_URL"
+chromium --kiosk --force-device-scale-factor=0.75 "$WEBOS_URL"
 EOF
 
 chmod +x ~/.xinitrc
