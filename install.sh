@@ -6,7 +6,7 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-USERNAME="${whoami}"
+USERNAME="huopaos"
 
 # Update system and install packages
 apt update
@@ -15,7 +15,7 @@ apt install -y xserver-xorg xinit x11-xserver-utils chromium
 # Setup .xinitrc for the user
 cat <<EOF > /home/$USERNAME/.xinitrc
 #!/bin/bash
-exec chromium --kiosk --force-device-scale-factor=0.75 https://your-web-os-url
+exec chromium --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
