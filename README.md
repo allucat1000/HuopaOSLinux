@@ -1,5 +1,5 @@
 ## Install instructions
-1. Install Debian Linux without a desktop environment.
+1. Install Debian Linux without a desktop environment. **Name your user account "huopaos"**
 
 2. Login as **root** and run "apt update" and "apt install curl" and "apt install sudo"
    
