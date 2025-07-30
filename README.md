@@ -11,4 +11,4 @@
 
 6. Run **"chmod +x install.sh"**
 
-7. Run **"./install.sh"**
+7. Run **"sudo ./install.sh"**
