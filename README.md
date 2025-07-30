@@ -11,4 +11,6 @@
 
 6. Run **"chmod +x install.sh"**
 
-7. Run **"sudo ./install.sh"**
+7. Run **"sudo apt install x11-utils"**
+
+8. Run **"sudo ./install.sh"**
