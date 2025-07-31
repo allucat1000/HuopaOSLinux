@@ -10,7 +10,7 @@ USERNAME="huopaos"
 
 # Update system and install packages
 apt update
-apt install -y xserver-xorg xinit x11-xserver-utils chromium
+apt install -y x11-utils xserver-xorg xinit x11-xserver-utils chromium
 
 # Setup .xinitrc for the user
 cat <<EOF > /home/$USERNAME/.xinitrc
