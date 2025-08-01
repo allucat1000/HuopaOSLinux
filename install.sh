@@ -17,7 +17,7 @@ cat <<EOF > /home/$USERNAME/.xinitrc
 #!/bin/bash
 sleep 1
 exec openbox-session &
-exec chromium --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
+exec chromium --force-dark-mode --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
