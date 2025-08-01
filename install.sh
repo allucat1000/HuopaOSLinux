@@ -34,4 +34,22 @@ EOF
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> /home/$USERNAME/.bash_profile
 chown $USERNAME:$USERNAME /home/$USERNAME/.bash_profile
 
+# Removing virtual desktop keybinds
+mkdir -p /home/$USERNAME/.config/openbox
+
+if [ ! -f /home/$USERNAME/.config/openbox/rc.xml ]; then
+  cp /etc/xdg/openbox/rc.xml /home/$USERNAME/.config/openbox/rc.xml
+fi
+
+sed -i 's|<number>[0-9]\+</number>|<number>1</number>|' /home/$USERNAME/.config/openbox/rc.xml
+
+# Remove Ctrl+Alt+Arrow keybinds
+sed -i '/<keybind key="C-A-Left">/,/<\/keybind>/d' /home/$USERNAME/.config/openbox/rc.xml
+sed -i '/<keybind key="C-A-Right">/,/<\/keybind>/d' /home/$USERNAME/.config/openbox/rc.xml
+sed -i '/<keybind key="C-A-Up">/,/<\/keybind>/d' /home/$USERNAME/.config/openbox/rc.xml
+sed -i '/<keybind key="C-A-Down">/,/<\/keybind>/d' /home/$USERNAME/.config/openbox/rc.xml
+
+# Set ownership to user
+chown -R $USERNAME:$USERNAME /home/$USERNAME/.config/openbox
+
 echo "Setup complete. Reboot to start in Chromium kiosk mode."
