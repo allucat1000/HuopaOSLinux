@@ -10,12 +10,13 @@ USERNAME="huopaos"
 
 # Update system and install packages
 apt update
-apt install -y x11-utils xserver-xorg xinit x11-xserver-utils chromium
+apt install -y x11-utils xserver-xorg xinit x11-xserver-utils chromium openbox
 
 # Setup .xinitrc for the user
 cat <<EOF > /home/$USERNAME/.xinitrc
 #!/bin/bash
 sleep 1
+exec openbox-session &
 exec chromium --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
