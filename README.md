@@ -1,7 +1,7 @@
 ## Install instructions
 1. Install Debian Linux without a desktop environment. **Name your user account "huopaos"**
 
-2. Login as **root** and run "apt update" and "apt install curl" and "apt install sudo"
+2. Login as **root** and run "apt update" and "apt install curl sudo"
    
 3. Run **"/usr/sbin/usermod -aG sudo huopaos"**
 
