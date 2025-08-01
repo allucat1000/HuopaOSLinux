@@ -18,6 +18,9 @@ cat <<EOF > /home/$USERNAME/.xinitrc
 sleep 1
 exec openbox-session &
 exec chromium --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
+echo "Shutting down!"
+sleep 1
+sudo shutdown now
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
