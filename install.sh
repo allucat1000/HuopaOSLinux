@@ -18,9 +18,6 @@ cat <<EOF > /home/$USERNAME/.xinitrc
 sleep 1
 exec openbox-session &
 exec chromium --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
-echo "Shutting down!"
-sleep 1
-sudo shutdown now
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
@@ -36,18 +33,5 @@ EOF
 # Auto-start X on login
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> /home/$USERNAME/.bash_profile
 chown $USERNAME:$USERNAME /home/$USERNAME/.bash_profile
-
-
-# Setup passwordless sudo
-echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" > /tmp/$USERNAME-sudoers
-visudo -cf /tmp/$USERNAME-sudoers
-if [ $? -eq 0 ]; then
-  cp /tmp/$USERNAME-sudoers /etc/sudoers.d/$USERNAME
-  chmod 440 /etc/sudoers.d/$USERNAME
-  echo "Passwordless sudo granted to $USERNAME"
-else
-  echo "Error in sudoers syntax. Not applying changes."
-  exit 1
-fi
 
 echo "Setup complete. Reboot to start in Chromium kiosk mode."
