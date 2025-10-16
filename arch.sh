@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# Ensure script is run as root
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root."
-  exit 1
-fi
-
 USERNAME="huopaos"
 
 # Update system and install essential packages
-pacman -Syu --noconfirm
-pacman -S --noconfirm base-devel git xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop openbox
+sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm base-devel git xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop openbox
 
 # Build and install snapd from AUR
 TMPDIR=$(mktemp -d)
@@ -21,10 +15,10 @@ cd /
 rm -rf "$TMPDIR"
 
 # Enable snapd
-systemctl enable --now snapd.socket
+sudo systemctl enable --now snapd.socket
 
 # Enable classic snap support
-ln -sf /var/lib/snapd/snap /snap
+sudo ln -sf /var/lib/snapd/snap /snap
 
 # Wait a bit for snapd to settle
 sleep 5
