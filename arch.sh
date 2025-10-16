@@ -24,7 +24,7 @@ sudo ln -sf /var/lib/snapd/snap /snap
 sleep 5
 
 # Install Chromium via Snap as the user
-sudo -u $USERNAME snap install chromium
+sudo snap install chromium
 
 # Setup .xinitrc for the user
 cat <<EOF > /home/$USERNAME/.xinitrc
@@ -38,7 +38,7 @@ chmod +x /home/$USERNAME/.xinitrc
 
 # Setup auto-login on tty1
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-sudo cat <<EOF > /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null <<EOF
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USERNAME --noclear %I \$TERM
