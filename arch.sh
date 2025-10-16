@@ -10,16 +10,26 @@ USERNAME="huopaos"
 
 # Update system and install essential packages
 pacman -Syu --noconfirm
-pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop openbox git
+pacman -S --noconfirm base-devel git xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop openbox
 
-# Install snapd
-pacman -S --noconfirm snapd
+# Build and install snapd from AUR
+TMPDIR=$(mktemp -d)
+git clone https://aur.archlinux.org/snapd.git "$TMPDIR/snapd"
+cd "$TMPDIR/snapd" || exit 1
+makepkg -si --noconfirm
+cd /
+rm -rf "$TMPDIR"
+
+# Enable snapd
 systemctl enable --now snapd.socket
 
 # Enable classic snap support
-ln -s /var/lib/snapd/snap /snap
+ln -sf /var/lib/snapd/snap /snap
 
-# Install Chromium via Snap
+# Wait a bit for snapd to settle
+sleep 5
+
+# Install Chromium via Snap as the user
 sudo -u $USERNAME snap install chromium
 
 # Setup .xinitrc for the user
