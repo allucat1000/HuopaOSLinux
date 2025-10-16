@@ -37,8 +37,8 @@ chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
 
 # Setup auto-login on tty1
-mkdir -p /etc/systemd/system/getty@tty1.service.d
-cat <<EOF > /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+sudo cat <<EOF > /etc/systemd/system/getty@tty1.service.d/override.conf
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $USERNAME --noclear %I \$TERM
