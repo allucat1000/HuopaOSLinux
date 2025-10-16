@@ -8,16 +8,26 @@ fi
 
 USERNAME="huopaos"
 
-# Update system and install packages
+# Update system and install essential packages
 pacman -Syu --noconfirm
-pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop chromium openbox
+pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xset xorg-xprop openbox git
+
+# Install snapd
+pacman -S --noconfirm snapd
+systemctl enable --now snapd.socket
+
+# Enable classic snap support
+ln -s /var/lib/snapd/snap /snap
+
+# Install Chromium via Snap
+sudo -u $USERNAME snap install chromium
 
 # Setup .xinitrc for the user
 cat <<EOF > /home/$USERNAME/.xinitrc
 #!/bin/bash
 sleep 1
 exec openbox-session &
-exec chromium --force-dark-mode --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
+exec /snap/bin/chromium --force-dark-mode --kiosk --force-device-scale-factor=0.75 https://allucat1000.github.io/HuopaOS
 EOF
 chown $USERNAME:$USERNAME /home/$USERNAME/.xinitrc
 chmod +x /home/$USERNAME/.xinitrc
